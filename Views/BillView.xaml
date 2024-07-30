@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.BillView"
+             Title="BillView"
+             NavigatedTo="OnArriving">
+    <VerticalStackLayout>
+        <ListView ItemsSource="{Binding Times}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Model.Id}" />
+                            <Label Grid.Column="1" Text="{Binding Model.ProjectId}" />
+                            <Label Grid.Column="2" Text="{Binding Model.EmployeeId}" />
+                            <Label Grid.Column="3" Text="{Binding Model.Narrative}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Text="Amount Due" FontSize="Large" HorizontalOptions="Center"/>
+        <Label Text="{Binding AmountDisplay}" FontSize="Medium" HorizontalOptions="Center"/>
+        <Label Text="{Binding DueDateDisplay}"/>
+        <Button Text="Ok" Clicked="OkClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

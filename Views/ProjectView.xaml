@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.ProjectView"
+             Title="ProjectView"
+             NavigatedTo="OnArrived">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Clients" Clicked="Toolbar_ClientsClicked"/>
+        <ToolbarItem Text="Projects" Clicked="Toolbar_ProjectsClicked"/>
+    </ContentPage.ToolbarItems>
+
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <SearchBar Grid.Column="0" Text="{Binding Query, Mode=TwoWay}"></SearchBar>
+            <Button Grid.Column="1" Text="Search"></Button>
+            <Button Grid.Column="2" Text="Add Project"
+                    Clicked="AddClicked"></Button>
+        </Grid>
+
+
+        <VerticalStackLayout>
+            <ListView  ItemsSource="{Binding Path = Projects} ">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Column="0">
+                                    <Label Text="{Binding Path = Display}"/>
+                                </Grid>
+                                <Grid Column="1">
+                                    <Button Text="Edit" Command="{Binding Path = EditCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Clicked="EditClicked"/>
+                                </Grid>
+                                <Grid Column="2">
+                                    <Button Text="Delete"
+                                                    Command="{Binding Path = DeleteCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    Clicked="DeleteClicked"
+                                                    ></Button>
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+
+        <!--" Button Text="Generate Bill" Command="{Binding ShowBillCommand}" Clicked="Button_Clicked"></Button>-->
+
+        <Button Text="Go Back" Clicked="GoBackClicked"></Button>
+    </VerticalStackLayout>
+</ContentPage>

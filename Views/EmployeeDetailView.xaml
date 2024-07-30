@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.EmployeeDetailView"
+             Title="EmployeeDetailView"
+             NavigatedTo="OnArriving">
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Employee Id"/>
+            <Entry Grid.Column="1" Text="{Binding Model.Id}" IsEnabled="False"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Name"/>
+            <Entry Grid.Column="1" Text="{Binding Model.Name, Mode=TwoWay}" Keyboard="Text"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Rate"/>
+            <Entry Grid.Column="1" Text="{Binding Model.Rate, Mode=TwoWay}" Keyboard="Numeric"/>
+        </Grid>
+        <Label Text="Time Entries" FontSize="Large" FontAttributes="Bold"/>
+        <ListView ItemsSource="{Binding Times}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Model.Id}" />
+                            <Label Grid.Column="1" Text="{Binding Model.ProjectId}" />
+                            <Label Grid.Column="2" Text="{Binding Model.EmployeeId}" />
+                            <Label Grid.Column="3" Text="{Binding Model.Narrative}"/>
+                            <Button Grid.Column="4" Text="Edit" Command="{Binding EditCommand}" Clicked="EditClicked"/>
+                            <Button Grid.Column="5"  Text="Delete" Command="{Binding DeleteCommand}" Clicked="DeleteClicked"/>
+                        </Grid>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Ok" Clicked="OkClicked"/>
+        <Button Text="Go Back" Clicked="GoBackClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

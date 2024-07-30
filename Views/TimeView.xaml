@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.TimeView"
+             Title="TimeView"
+             NavigatedTo="OnArrived">
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <SearchBar Grid.Column="0" Text="{Binding Query, Mode=TwoWay}"></SearchBar>
+            <Button Grid.Column="1" Text="Search"></Button>
+            <Button Grid.Column="2" Text="Add"
+                    Clicked="AddClicked"></Button>
+        </Grid>
+        <ListView ItemsSource="{Binding Times}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Model.Id}" />
+                            <Label Grid.Column="1" Text="{Binding Model.ProjectId}" />
+                            <Label Grid.Column="2" Text="{Binding Model.EmployeeId}" />
+                            <Label Grid.Column="3" Text="{Binding Model.Narrative}"/>
+                            <Button Grid.Column="4" Text="Edit" Command="{Binding EditCommand}" Clicked="EditClicked"/>
+                            <Button Grid.Column="5"  Text="Delete" Command="{Binding DeleteCommand}" Clicked="DeleteClicked"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Go Back" Clicked="GoBackClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

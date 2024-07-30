@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.ProjectDetailView"
+             Title="ProjectDetail"
+             NavigatedTo="OnArrived">
+    <VerticalStackLayout>
+        <Label 
+            Text="Name"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry Text="{Binding Path=Model.ShortName, Mode=TwoWay}"></Entry>
+        <Label
+            Text="Notes"
+         />
+        <Editor Text="{Binding Path=Model.Notes, Mode=TwoWay}"></Editor>
+        
+        <Label Text="Bills" FontSize="Large"/>
+        <ListView ItemsSource="{Binding Bills}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Model.TotalAmount}"/>
+                            <Label Grid.Column="1" Text="{Binding Model.DueDate}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Generate Bill" Command="{Binding ShowBillCommand}" Clicked="Button_Clicked"></Button>
+        <Button
+            Text="Ok" Command="{Binding AddCommand}"
+            Clicked="OkClicked"
+            />
+        <Button
+            Text="Cancel"
+            Clicked="CancelClicked"
+            />
+    </VerticalStackLayout>
+</ContentPage>
